@@ -108,5 +108,47 @@ internal class Ejemplos
         libro = casoLinq.GetPrimero();
         Console.WriteLine(libro.ToString());
 
+        libro = casoLinq.GetUltimo();
+        Console.WriteLine(libro.ToString());
+
+        decimal resultado = 0;
+        resultado = casoLinq.GetTotalPrecios();
+        Console.WriteLine($"{resultado}");
+
+        resultado = casoLinq.GetPromedioPrecios();
+        Console.WriteLine($"{resultado}");
+
+        List<Libro> listaLibros;
+        listaLibros = casoLinq.GetListById();
+        foreach(Libro l in listaLibros)
+        {
+            Console.WriteLine(l.ToString());
+        }
+
+        List<string> listaTitulos;
+        listaTitulos = casoLinq.GetListByTitulos();
+        foreach(string titulo in listaTitulos)
+        {
+            Console.WriteLine($"{titulo}");
+        }
+
+        libro = casoLinq.GetMayorPrecio();
+        Console.WriteLine(libro.ToString());
+
+        libro = casoLinq.GetMenorPrecio();
+        Console.WriteLine(libro.ToString());
+
+
+        listaLibros = casoLinq.GetMayorPrecioProm();
+        foreach (Libro l in listaLibros)
+        {
+            Console.WriteLine(l.ToString());
+        }
+
+        listaLibros = casoLinq.GetOrdenadosPorTituloDesc();
+        foreach (Libro l in listaLibros)
+        {
+            Console.WriteLine(l.ToString());
+        }
     }
 }

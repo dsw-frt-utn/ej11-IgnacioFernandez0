@@ -1,4 +1,6 @@
-﻿namespace Dsw2026Ej11.Collections;
+﻿using Dsw2026Ej11.Domain;
+
+namespace Dsw2026Ej11.Collections;
 
 /*
  * Para cada punto crear un método que permita:
@@ -16,4 +18,60 @@
  */
 public class CasoLinq
 {
+    private List<Libro> listaLibros = Libro.CrearLista();
+
+    public Libro? GetPrimero()
+    {
+        return listaLibros.First();
+    }
+
+    public Libro? GetUltimo()
+    {
+        return listaLibros.Last();
+    }
+
+    public decimal GetTotalPrecios()
+    {
+        return listaLibros.Sum(l => l.Precio);
+    }
+
+    public decimal GetPromedioPrecios()
+    {
+        if (!listaLibros.Any())
+        {
+            return 0;
+        }
+        return listaLibros.Average(l => l.Precio);
+    }
+
+    public List<Libro> GetListById()
+    {
+        return listaLibros.Where(l => l.Id > 15).ToList();
+    }
+
+    public List<String> GetListByTitulos()
+    {
+        return listaLibros.Select(l => $"{l.Titulo}, {l.Precio:C2}").ToList();
+    }
+
+    public Libro? GetMayorPrecio()
+    {
+        return listaLibros.MaxBy(l => l.Precio);
+    }
+
+    public Libro? GetMenorPrecio()
+    {
+        return listaLibros.MinBy(l => l.Precio);
+    }
+
+    public List<Libro> GetMayorPrecioProm()
+    {
+        decimal precioProm = GetPromedioPrecios();
+        return listaLibros.Where(l => l.Precio > precioProm).ToList();
+    }
+
+    public List<Libro> GetOrdenadosPorTituloDesc()
+    {
+        return listaLibros.OrderByDescending(l => l.Titulo).ToList();
+    }
 }
